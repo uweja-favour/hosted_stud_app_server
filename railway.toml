@@ -1,0 +1,32 @@
+[build]
+builder = "dockerfile"
+
+[[services]]
+name = "auth-service"
+source = "auth-service"
+dockerfile = "auth-service/Dockerfile"
+
+[[services]]
+name = "classroom-quiz-service"
+source = "classroom-quiz-service"
+dockerfile = "classroom-quiz-service/Dockerfile"
+
+[[services]]
+name = "note-summary-service"
+source = "note-summary-service"
+dockerfile = "note-summary-service/Dockerfile"
+
+[[services]]
+name = "question-generator-service"
+source = "question-generator-service"
+dockerfile = "question-generator-service/Dockerfile"
+
+[[services]]
+name = "realtime-gateway"
+source = "realtime-gateway"
+dockerfile = "realtime-gateway/Dockerfile"
+
+[[services]]
+name = "self-test-quiz-service"
+source = "self-test-quiz-service"
+dockerfile = "self-test-quiz-service/Dockerfile"
