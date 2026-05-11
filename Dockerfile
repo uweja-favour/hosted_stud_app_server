@@ -33,6 +33,6 @@ COPY --from=build /app/self-test-quiz-service/build/libs/*.jar        self-test-
 COPY start-all.sh .
 RUN chmod +x start-all.sh
 
-EXPOSE 8080
+#EXPOSE 8080
 
 CMD ["./start-all.sh"]
