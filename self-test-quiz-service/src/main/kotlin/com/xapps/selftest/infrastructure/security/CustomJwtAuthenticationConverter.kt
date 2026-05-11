@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component
 @Component
 class CustomJwtAuthenticationConverter : Converter<Jwt, AbstractAuthenticationToken> {
 
-    private val logger: Logger = LoggerFactory.getLogger(javaClass)
+    private val log = LoggerFactory.getLogger(javaClass)
 
     override fun convert(jwt: Jwt): AbstractAuthenticationToken {
         val principal = buildPrincipal(jwt)
@@ -37,7 +37,7 @@ class CustomJwtAuthenticationConverter : Converter<Jwt, AbstractAuthenticationTo
             userRole = userRole,
             otherRoles = roles
         ).also {
-            logger.info("DomainUserPrincipal: $it")
+            log.info("DomainUserPrincipal: $it")
         }
     }
 

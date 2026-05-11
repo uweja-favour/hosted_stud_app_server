@@ -2,6 +2,7 @@ package realtime_gateway.infrastructure.messaging.websocket.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.core.Ordered
 import org.springframework.web.reactive.HandlerMapping
 import org.springframework.web.reactive.handler.SimpleUrlHandlerMapping
 import org.springframework.web.reactive.socket.server.support.WebSocketHandlerAdapter
@@ -20,7 +21,9 @@ class WebSocketConfig(
         )
         // the url -> ws://10.0.2.2:8084/api/v1/ws/realtime?token=JWT
 
-        return SimpleUrlHandlerMapping(map, 1)
+        return SimpleUrlHandlerMapping(map).apply {
+            order = -1
+        }
     }
 
     @Bean

@@ -4,7 +4,6 @@ import com.xapps.selftest.infrastructure.security.model.JwtAuthenticationToken
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatus
-import org.springframework.security.authentication.ReactiveAuthenticationManager
 import org.springframework.security.core.context.ReactiveSecurityContextHolder
 import org.springframework.stereotype.Component
 import org.springframework.web.server.ServerWebExchange
@@ -21,23 +20,23 @@ class JwtAuthWebFilter(
     private val authEnabled: Boolean
 ) : WebFilter {
 
-    private val logger = LoggerFactory.getLogger(javaClass)
+    private val log = LoggerFactory.getLogger(javaClass)
 
     override fun filter(exchange: ServerWebExchange, chain: WebFilterChain): Mono<Void> {
         if (!authEnabled) {
-            logger.warn("Development mode: bypassing authentication")
+            log.warn("Development mode: bypassing authentication")
             return chain.filter(exchange)
         }
 
-        logger.info("About to extract token...")
+        log.info("About to extract token...")
         val token = tokenExtractor.extractBearerToken(exchange.request)
             ?: return chain.filter(exchange)
 
-        logger.info("Token extracted: $token")
+        log.info("Token extracted: $token")
 
         val authRequest = JwtAuthenticationToken(token)
 
-        logger.info("Proceeding to authenticate...")
+        log.info("Proceeding to authenticate...")
         return authenticationManager.authenticate(authRequest)
             .flatMap { authenticated ->
                 chain.filter(exchange)
@@ -46,7 +45,7 @@ class JwtAuthWebFilter(
                     )
             }
             .onErrorResume {
-                logger.error("An error occurred in authentication: ${it.message}", it)
+                log.error("An error occurred in authentication: ${it.message}", it)
                 exchange.response.statusCode = HttpStatus.UNAUTHORIZED
                 exchange.response.setComplete()
             }

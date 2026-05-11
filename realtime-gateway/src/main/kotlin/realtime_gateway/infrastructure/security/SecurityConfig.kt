@@ -41,13 +41,13 @@ class SecurityConfig(
             .authorizeExchange {
                 // Allow websocket handshake endpoint
                 it.pathMatchers("/api/v1/ws/**").permitAll()
+                it.anyExchange().authenticated()
 
-
-                if (!authEnabled) {
-                    it.anyExchange().permitAll()
-                } else {
-                    it.anyExchange().authenticated()
-                }
+//                if (!authEnabled) {
+//                    it.anyExchange().permitAll()
+//                } else {
+//                    it.anyExchange().authenticated()
+//                }
             }
 
             .httpBasic { it.disable() }

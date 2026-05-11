@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono
 @Component
 class JwtAuthEntryPoint : ServerAuthenticationEntryPoint {
 
-    private val logger = LoggerFactory.getLogger(javaClass)
+    private val log = LoggerFactory.getLogger(javaClass)
     /**
      * This method is called whenever an unauthenticated user tries to access a secured endpoint.
      * It handles authentication failures and sends a proper HTTP response back to the client.
@@ -26,7 +26,7 @@ class JwtAuthEntryPoint : ServerAuthenticationEntryPoint {
         exchange: ServerWebExchange,
         authException: AuthenticationException
     ): Mono<Void> {
-        logger.info("Authentication failure in JwtAuthEntryPoint")
+        log.info("Authentication failure in JwtAuthEntryPoint")
         // Get the HTTP response object from the current exchange
         val response = exchange.response
 
