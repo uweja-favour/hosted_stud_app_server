@@ -7,7 +7,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN ./gradlew \
+RUN chmod +x gradlew && ./gradlew \
       :auth-service:bootJar \
       :classroom-quiz-service:bootJar \
       :note-summary-service:bootJar \
