@@ -1,9 +1,25 @@
-FROM eclipse-temurin:21-jdk
+# ─────────────────────────────────────────────
+# 1. BUILD STAGE
+# ─────────────────────────────────────────────
+FROM gradle:8.7-jdk21 AS build
 
 WORKDIR /app
 
-COPY build/libs/*.jar app.jar
+COPY . .
+
+RUN ./gradlew :note-summary-service:bootJar --no-daemon
+
+
+# ─────────────────────────────────────────────
+# 2. RUNTIME STAGE
+# ─────────────────────────────────────────────
+FROM eclipse-temurin:21-jre
+
+WORKDIR /app
+
+COPY --from=build /app/note-summary-service/build/libs/*.jar app.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# FORCE dev profile (equivalent to your bootRun command)
+ENTRYPOINT ["sh", "-c", "java -jar app.jar --server.port=$PORT --spring.profiles.active=dev"]
