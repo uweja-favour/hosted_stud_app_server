@@ -61,7 +61,7 @@ spring:
 # SERVER CONFIG
 # -----------------------------------------
 server:
-  port: ${PORT:8085}
+  port: ${PORT:8081}
 
 
 openai:

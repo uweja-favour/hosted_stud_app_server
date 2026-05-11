@@ -43,7 +43,7 @@
 # SERVER CONFIG
 # -----------------------------------------
 server:
-  port: ${PORT:8082}
+  port: ${PORT:8085}
   address: 0.0.0.0
 
 security:

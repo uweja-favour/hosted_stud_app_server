@@ -19,7 +19,7 @@ transaction:
   default-timeout: 30s
 
 server:
-  port: ${PORT:8086}
+  port: ${PORT:8082}
 
 # -----------------------------------------
 # OPENAI CONFIG (Sensitive - should be env var in real systems)
