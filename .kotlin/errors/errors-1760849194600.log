@@ -1,0 +1,289 @@
+kotlin version: 2.2.20
+error message: org.jetbrains.kotlin.backend.common.CompilationException: Back-end: Please report this problem https://kotl.in/issue
+C:/dev/backend/self-test-quiz-service/src/main/kotlin/com/xapps/selftest/quiz/domain/model/SelfTestAttempt.kt:11:1
+Problem with `@Serializable
+data class SelfTestAttempt {
+  @OptIn(markerClass = [ExperimentalTime::class])
+  constructor(id: String, quizId: String, attemptNumber: Int, startedAt: Instant, endedAt: Instant, questionResults: List<SelfTestQuestionResult>, grade: SelfTestGrade, report: SelfTestReport? = null) /* primary */ {
+    super/*Any*/()
+    /* <init>() */
+
+  }
+
+  val id: String
+    field = id
+    get
+
+  val quizId: String
+    field = quizId
+    get
+
+  val attemptNumber: Int
+    field = attemptNumber
+    get
+
+  @Contextual
+  val startedAt: Instant
+    field = startedAt
+    get
+
+  val endedAt: Instant
+    field = endedAt
+    get
+
+  val questionResults: List<SelfTestQuestionResult>
+    field = questionResults
+    get
+
+  val grade: SelfTestGrade
+    field = grade
+    get
+
+  val report: SelfTestReport?
+    field = report
+    get
+
+  @OptIn(markerClass = [ExperimentalTime::class])
+  val durationInSeconds: Long
+    get(): Long {
+      return <this>.<get-endedAt>().minus(other = <this>.<get-startedAt>()).<get-inWholeSeconds>()
+    }
+
+  val correctAnswers: Int
+    get(): Int {
+      return count<SelfTestQuestionResult>(/* <this> = <this>.<get-questionResults>(), */ predicate = local fun <anonymous>(it: SelfTestQuestionResult): Boolean {
+        return it.<get-isCorrect>()
+      }
+)
+    }
+
+  val incorrectAnswers: Int
+    get(): Int {
+      return count<SelfTestQuestionResult>(/* <this> = <this>.<get-questionResults>(), */ predicate = local fun <anonymous>(it: SelfTestQuestionResult): Boolean {
+        return it.<get-isCorrect>().not()
+      }
+)
+    }
+
+  val totalQuestions: Int
+    get(): Int {
+      return <this>.<get-questionResults>().<get-size>()
+    }
+
+  companion object Companion {
+    private constructor() /* primary */ {
+      super/*Any*/()
+      /* <init>() */
+
+    }
+
+    fun serializer(): KSerializer<SelfTestAttempt>
+
+    /* fake */ override operator fun equals(other: Any?): Boolean
+
+    /* fake */ override fun hashCode(): Int
+
+    /* fake */ override fun toString(): String
+
+  }
+
+  @Deprecated(message = "This synthesized declaration should not be used directly", level = DeprecationLevel.HIDDEN)
+  object $serializer : GeneratedSerializer<SelfTestAttempt> {
+    private constructor() /* primary */ {
+      super/*Any*/()
+      /* <init>() */
+
+    }
+
+    override fun serialize(encoder: Encoder, value: SelfTestAttempt)
+
+    override fun deserialize(decoder: Decoder): SelfTestAttempt
+
+    override val descriptor: SerialDescriptor
+      override get
+
+    override fun childSerializers(): Array<KSerializer<*>>
+
+    /* fake */ override fun typeParametersSerializers(): Array<KSerializer<*>>
+
+    /* fake */ override operator fun equals(other: Any?): Boolean
+
+    /* fake */ override fun hashCode(): Int
+
+    /* fake */ override fun toString(): String
+
+  }
+
+  operator fun component1(): String {
+    return <this>.#id
+  }
+
+  operator fun component2(): String {
+    return <this>.#quizId
+  }
+
+  operator fun component3(): Int {
+    return <this>.#attemptNumber
+  }
+
+  operator fun component4(): Instant {
+    return <this>.#startedAt
+  }
+
+  operator fun component5(): Instant {
+    return <this>.#endedAt
+  }
+
+  operator fun component6(): List<SelfTestQuestionResult> {
+    return <this>.#questionResults
+  }
+
+  operator fun component7(): SelfTestGrade {
+    return <this>.#grade
+  }
+
+  operator fun component8(): SelfTestReport? {
+    return <this>.#report
+  }
+
+  fun copy(id: String = <this>.#id, quizId: String = <this>.#quizId, attemptNumber: Int = <this>.#attemptNumber, startedAt: Instant = <this>.#startedAt, endedAt: Instant = <this>.#endedAt, questionResults: List<SelfTestQuestionResult> = <this>.#questionResults, grade: SelfTestGrade = <this>.#grade, report: SelfTestReport? = <this>.#report): SelfTestAttempt {
+    return SelfTestAttempt(id = id, quizId = quizId, attemptNumber = attemptNumber, startedAt = startedAt, endedAt = endedAt, questionResults = questionResults, grade = grade, report = report)
+  }
+
+  override fun toString(): String {
+    return "SelfTestAttempt(" + "id=" + <this>.#id + ", " + "quizId=" + <this>.#quizId + ", " + "attemptNumber=" + <this>.#attemptNumber + ", " + "startedAt=" + <this>.#startedAt + ", " + "endedAt=" + <this>.#endedAt + ", " + "questionResults=" + <this>.#questionResults + ", " + "grade=" + <this>.#grade + ", " + "report=" + <this>.#report + ")"
+  }
+
+  override fun hashCode(): Int {
+    var result: Int = <this>.#id.hashCode()
+    result = result.times(other = 31).plus(other = <this>.#quizId.hashCode())
+    result = result.times(other = 31).plus(other = <this>.#attemptNumber.hashCode())
+    result = result.times(other = 31).plus(other = <this>.#startedAt.hashCode())
+    result = result.times(other = 31).plus(other = <this>.#endedAt.hashCode())
+    result = result.times(other = 31).plus(other = <this>.#questionResults.hashCode())
+    result = result.times(other = 31).plus(other = <this>.#grade.hashCode())
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#report, arg1 = null) -> 0
+      else -> <this>.#report.hashCode()
+    })
+    return result
+  }
+
+  override operator fun equals(other: Any?): Boolean {
+    when {
+      EQEQEQ(arg0 = <this>, arg1 = other) -> return true
+    }
+    when {
+      other !is SelfTestAttempt -> return false
+    }
+    val tmp0_other_with_cast: SelfTestAttempt = other /*as SelfTestAttempt */
+    when {
+      EQEQ(arg0 = <this>.#id, arg1 = tmp0_other_with_cast.#id).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#quizId, arg1 = tmp0_other_with_cast.#quizId).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#attemptNumber, arg1 = tmp0_other_with_cast.#attemptNumber).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#startedAt, arg1 = tmp0_other_with_cast.#startedAt).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#endedAt, arg1 = tmp0_other_with_cast.#endedAt).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#questionResults, arg1 = tmp0_other_with_cast.#questionResults).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#grade, arg1 = tmp0_other_with_cast.#grade).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#report, arg1 = tmp0_other_with_cast.#report).not() -> return false
+    }
+    return true
+  }
+
+  @JvmStatic
+  internal /* static */ fun write$Self(self: SelfTestAttempt, output: CompositeEncoder, serialDesc: SerialDescriptor)
+
+  internal constructor(seen0: Int, id: String?, quizId: String?, attemptNumber: Int, startedAt: Instant?, endedAt: Instant?, questionResults: List<SelfTestQuestionResult>?, grade: SelfTestGrade?, report: SelfTestReport?, serializationConstructorMarker: SerializationConstructorMarker?)
+
+}
+
+`
+Details: kotlinx.serialization compiler plugin internal error: unable to transform declaration, see cause
+	at org.jetbrains.kotlinx.serialization.compiler.extensions.SerializerClassLowering.lower(SerializationLoweringExtension.kt:233)
+	at org.jetbrains.kotlinx.serialization.compiler.extensions.SerializationLoweringExtensionKt$runOnFileInOrder$1.visitClass(SerializationLoweringExtension.kt:46)
+	at org.jetbrains.kotlin.ir.visitors.IrVisitorVoid.visitClass(IrVisitorVoid.kt:44)
+	at org.jetbrains.kotlin.ir.visitors.IrVisitorVoid.visitClass(IrVisitorVoid.kt:18)
+	at org.jetbrains.kotlin.ir.declarations.IrClass.accept(IrClass.kt:72)
+	at org.jetbrains.kotlin.ir.declarations.IrPackageFragment.acceptChildren(IrPackageFragment.kt:27)
+	at org.jetbrains.kotlin.ir.visitors.IrVisitorsKt.acceptChildrenVoid(IrVisitors.kt:23)
+	at org.jetbrains.kotlinx.serialization.compiler.extensions.SerializationLoweringExtensionKt$runOnFileInOrder$1.visitElement(SerializationLoweringExtension.kt:42)
+	at org.jetbrains.kotlin.ir.visitors.IrVisitorVoid.visitPackageFragment(IrVisitorVoid.kt:168)
+	at org.jetbrains.kotlin.ir.visitors.IrVisitorVoid.visitFile(IrVisitorVoid.kt:184)
+	at org.jetbrains.kotlin.ir.visitors.IrVisitorVoid.visitFile(IrVisitorVoid.kt:180)
+	at org.jetbrains.kotlin.ir.visitors.IrVisitorVoid.visitFile(IrVisitorVoid.kt:18)
+	at org.jetbrains.kotlin.ir.declarations.IrFile.accept(IrFile.kt:27)
+	at org.jetbrains.kotlin.ir.visitors.IrVisitorsKt.acceptVoid(IrVisitors.kt:11)
+	at org.jetbrains.kotlinx.serialization.compiler.extensions.SerializationLoweringExtensionKt.runOnFileInOrder(SerializationLoweringExtension.kt:40)
+	at org.jetbrains.kotlinx.serialization.compiler.extensions.SerializationLoweringExtension.generate(SerializationLoweringExtension.kt:197)
+	at org.jetbrains.kotlin.fir.pipeline.ConvertToIrKt.applyIrGenerationExtensions(convertToIr.kt:498)
+	at org.jetbrains.kotlin.fir.pipeline.Fir2IrPipeline.runActualizationPipeline(convertToIr.kt:253)
+	at org.jetbrains.kotlin.fir.pipeline.Fir2IrPipeline.convertToIrAndActualize(convertToIr.kt:134)
+	at org.jetbrains.kotlin.fir.pipeline.ConvertToIrKt.convertToIrAndActualize(convertToIr.kt:100)
+	at org.jetbrains.kotlin.fir.pipeline.ConvertToIrKt.convertToIrAndActualize$default(convertToIr.kt:73)
+	at org.jetbrains.kotlin.cli.jvm.compiler.legacy.pipeline.JvmCompilerPipelineKt.convertToIrAndActualizeForJvm(jvmCompilerPipeline.kt:101)
+	at org.jetbrains.kotlin.cli.pipeline.jvm.JvmFir2IrPipelinePhase.executePhase(JvmFir2IrPipelinePhase.kt:30)
+	at org.jetbrains.kotlin.cli.pipeline.jvm.JvmFir2IrPipelinePhase.executePhase(JvmFir2IrPipelinePhase.kt:25)
+	at org.jetbrains.kotlin.cli.pipeline.jvm.JvmFir2IrPipelinePhase.executePhase(JvmFir2IrPipelinePhase.kt:19)
+	at org.jetbrains.kotlin.cli.pipeline.PipelinePhase.phaseBody(PipelinePhase.kt:68)
+	at org.jetbrains.kotlin.cli.pipeline.PipelinePhase.phaseBody(PipelinePhase.kt:58)
+	at org.jetbrains.kotlin.config.phaser.NamedCompilerPhase.invoke(CompilerPhase.kt:102)
+	at org.jetbrains.kotlin.backend.common.phaser.CompositePhase.invoke(PhaseBuilders.kt:22)
+	at org.jetbrains.kotlin.config.phaser.CompilerPhaseKt.invokeToplevel(CompilerPhase.kt:53)
+	at org.jetbrains.kotlin.cli.pipeline.AbstractCliPipeline.runPhasedPipeline(AbstractCliPipeline.kt:109)
+	at org.jetbrains.kotlin.cli.pipeline.AbstractCliPipeline.execute(AbstractCliPipeline.kt:68)
+	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecutePhased(K2JVMCompiler.kt:79)
+	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecutePhased(K2JVMCompiler.kt:45)
+	at org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(CLICompiler.kt:90)
+	at org.jetbrains.kotlin.cli.common.CLICompiler.exec(CLICompiler.kt:352)
+	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunnerBase.runCompiler(IncrementalJvmCompilerRunnerBase.kt:176)
+	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunnerBase.runCompiler(IncrementalJvmCompilerRunnerBase.kt:39)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.doCompile(IncrementalCompilerRunner.kt:499)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileImpl(IncrementalCompilerRunner.kt:416)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.tryCompileIncrementally$lambda$0$compile(IncrementalCompilerRunner.kt:249)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.tryCompileIncrementally(IncrementalCompilerRunner.kt:267)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compile(IncrementalCompilerRunner.kt:119)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.execIncrementalCompiler(CompileServiceImpl.kt:684)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.access$execIncrementalCompiler(CompileServiceImpl.kt:94)
+	at org.jetbrains.kotlin.daemon.CompileServiceImpl.compile(CompileServiceImpl.kt:1810)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:587)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:828)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:705)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:704)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+Caused by: java.lang.IllegalStateException: Serializer for element of type kotlin.time.Instant has not been found
+	at org.jetbrains.kotlinx.serialization.compiler.backend.ir.SerializerSearchUtilKt.findTypeSerializerOrContext(SerializerSearchUtil.kt:85)
+	at org.jetbrains.kotlinx.serialization.compiler.backend.ir.SerializerSearchUtilKt.getIrSerialTypeInfo(SerializerSearchUtil.kt:64)
+	at org.jetbrains.kotlinx.serialization.compiler.backend.ir.BaseIrGenerator.cacheableChildSerializerInstance(BaseIrGenerator.kt:473)
+	at org.jetbrains.kotlinx.serialization.compiler.backend.ir.BaseIrGenerator.createCachedChildSerializers(BaseIrGenerator.kt:465)
+	at org.jetbrains.kotlinx.serialization.compiler.backend.ir.SerializableIrGenerator.<init>(SerializableIrGenerator.kt:62)
+	at org.jetbrains.kotlinx.serialization.compiler.backend.ir.SerializableIrGenerator$Companion.generate(SerializableIrGenerator.kt:407)
+	at org.jetbrains.kotlinx.serialization.compiler.extensions.SerializerClassLowering.lower(SerializationLoweringExtension.kt:149)
+	... 62 more
+
+
