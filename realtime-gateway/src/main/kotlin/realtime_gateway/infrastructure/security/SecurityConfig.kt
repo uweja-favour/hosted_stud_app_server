@@ -39,6 +39,10 @@ class SecurityConfig(
             .securityContextRepository(NoOpServerSecurityContextRepository.getInstance())
 
             .authorizeExchange {
+                // Allow websocket handshake endpoint
+                it.pathMatchers("/api/v1/ws/**").permitAll()
+
+
                 if (!authEnabled) {
                     it.anyExchange().permitAll()
                 } else {
@@ -58,12 +62,37 @@ class SecurityConfig(
             .build()
     }
 
+//    @Bean
+//    fun corsConfigurationSource(): CorsConfigurationSource {
+//        val config = CorsConfiguration().apply {
+//            allowedOrigins = listOf("http://10.0.2.2:5177", "*")
+//            allowedMethods = listOf("GET", "POST", "PUT", "DELETE", "OPTIONS")
+//            allowedHeaders = listOf("*")
+//            allowCredentials = true
+//        }
+//
+//        return UrlBasedCorsConfigurationSource().apply {
+//            registerCorsConfiguration("/**", config)
+//        }
+//    }
+
     @Bean
     fun corsConfigurationSource(): CorsConfigurationSource {
+
         val config = CorsConfiguration().apply {
-            allowedOrigins = listOf("http://10.0.2.2:5177")
-            allowedMethods = listOf("GET", "POST", "PUT", "DELETE", "OPTIONS")
+
+            allowedOriginPatterns = listOf("*")
+
+            allowedMethods = listOf(
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE",
+                "OPTIONS"
+            )
+
             allowedHeaders = listOf("*")
+
             allowCredentials = true
         }
 

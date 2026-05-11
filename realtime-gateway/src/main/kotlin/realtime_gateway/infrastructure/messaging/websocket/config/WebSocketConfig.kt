@@ -15,7 +15,8 @@ class WebSocketConfig(
     @Bean
     fun webSocketHandlerMapping(): HandlerMapping {
         val map = mapOf(
-            "/api/v1/ws/realtime" to handler
+            "/api/v1/ws/realtime" to handler,
+            "/api/v1/wss/realtime" to handler,
         )
         // the url -> ws://10.0.2.2:8084/api/v1/ws/realtime?token=JWT
 
